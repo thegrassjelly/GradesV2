@@ -1,6 +1,6 @@
 ﻿namespace GradesV2
 {
-    class GradeStatistics
+    public class GradeStatistics
     {
        public float AverageGrade;
        public float HighestGrade;
