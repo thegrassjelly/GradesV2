@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GradesV2
 {
     public class GradeBook
     {
         private List<float> grades;
+
+        public string Name;
 
         public GradeBook()
         {

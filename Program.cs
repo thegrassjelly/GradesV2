@@ -6,6 +6,12 @@ namespace GradesV2
     {
         static void Main(string[] args)
         {
+            GradeBook g1 = new GradeBook();
+            GradeBook g2 = g1;
+
+            g1.Name = "Steven's grade book";
+            Console.WriteLine(g2.Name);
+
             GradeBook book = new GradeBook();
 
             book.AddGrade(91);
