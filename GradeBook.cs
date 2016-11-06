@@ -4,36 +4,9 @@ using System.IO;
 
 namespace GradesV2
 {
-    public class GradeBook
+    public abstract class GradeBook : GradeTracker
     {
-        private List<float> _grades;
-
-        private string _name;
-
-        public NameChangedDelegate NameChanged;
-
-        public string Name
-        {
-            get { return _name; }
-            set
-            {
-                if (string.IsNullOrEmpty(value))
-                {
-                    throw new ArgumentException("Name cannot be null or empty");
-                }
-
-                if (_name != value)
-                {
-                    NameChangedEventArgs args = new NameChangedEventArgs();
-                    args.ExistingName = _name;
-                    args.NewName = value;
-
-                    //NameChanged(this, args);
-                }
-
-                _name = value;
-            }
-        }
+        protected List<float> _grades;
 
         public GradeBook()
         {
@@ -41,13 +14,15 @@ namespace GradesV2
             _grades = new List<float>();
         }
 
-        public void AddGrade(float grade)
+        public override void AddGrade(float grade)
         {
             _grades.Add(grade);
         }
 
-        public GradeStatistics ComputeStatistics()
+        public override GradeStatistics ComputeStatistics()
         {
+            Console.WriteLine("Gradebook::ComputeStatistics");
+
             GradeStatistics stats = new GradeStatistics();
 
             float sum = 0;
@@ -61,11 +36,11 @@ namespace GradesV2
             return stats;
         }
 
-        public void WriteGrade(TextWriter destinaton)
+        public override void WriteGrades(TextWriter destination)
         {
             for (int i = 0; i < _grades.Count; i++)
             {
-                destinaton.WriteLine(_grades[i]);
+                destination.WriteLine(_grades[i]);
             }
         }
     }
